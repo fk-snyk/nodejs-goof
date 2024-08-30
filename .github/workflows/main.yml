@@ -27,5 +27,5 @@ jobs:
       # Run Snyk OS
       - name: Run Snyk OS
         run: |
-          snyk test --project-name="GH_ACTION_CI" --json --print-deps | snyk-delta --baselineOrg faa70fbb-a08f-4fe1-877b-e8c5fcd86210 --baselineProject 998da221-e247-4647-ad25-218cb9bc7fd8 --setPassIfNoBaseline true
+          snyk test --json --print-deps | snyk-delta --baselineOrg faa70fbb-a08f-4fe1-877b-e8c5fcd86210 --baselineProject 998da221-e247-4647-ad25-218cb9bc7fd8 --setPassIfNoBaseline true
         continue-on-error: false
