@@ -1,0 +1,31 @@
+name: "Snyk Scan"
+
+on:
+  push:
+    branches:
+      - 'demo*'  # Include any branch starting with demo
+
+jobs:
+  Pipeline-Job:
+    # Configure Environment
+    name: 'Snyk Scan'
+    runs-on: ubuntu-latest
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    steps:
+      # Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v1
+
+      # Install and Authenticate to Snyk
+      - name: Install Snyk & Authenticate
+        run: |
+          sudo npm install -g snyk
+          sudo npm install -g snyk-delta
+          snyk auth ${SNYK_TOKEN}
+      # Run Snyk OS
+      - name: Run Snyk OS
+        run: |
+          snyk test --project-name="GH_ACTION_CI" --json --print-deps | snyk-delta --baselineOrg faa70fbb-a08f-4fe1-877b-e8c5fcd86210 --baselineProject 998da221-e247-4647-ad25-218cb9bc7fd8 --setPassIfNoBaseline true
+        continue-on-error: false
