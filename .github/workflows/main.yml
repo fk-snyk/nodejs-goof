@@ -1,4 +1,4 @@
-name: "Snyk Scan"
+name: "Snyk Delta Scan"
 
 on:
   push:
