@@ -10,6 +10,7 @@ jobs:
     # Configure Environment
     name: 'Snyk Scan'
     runs-on: ubuntu-latest
+    environment: demo
     env:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
